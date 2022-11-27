@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import CardsDetails from "./components/CardsDetails";
 import Cards from "./components/Cards";
 function App() {
+  console.log("hello");
   return (
     <div className="App">
       <Header />

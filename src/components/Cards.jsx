@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Cardsdata from "./CardData";
 import './style.css'
 function Cards() {
-  const [data, setData] = useState(Cardsdata);
+  const [data] = useState(Cardsdata);
   return (
     <div className="container mt-3">
       <h2 className="text-center">Taste It</h2>

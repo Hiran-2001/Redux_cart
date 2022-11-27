@@ -6,8 +6,12 @@ import Nav from "react-bootstrap/Nav";
 import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
 import mtcart from '../assets/cart-empty.png'
-
+ import {useSelector} from "react-redux"
 function Header() {
+
+  const getData = useSelector((state)=>state.cartReducer)
+  console.log(getData);
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
