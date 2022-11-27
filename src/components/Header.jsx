@@ -5,13 +5,13 @@ import Badge from "@mui/material/Badge";
 import Nav from "react-bootstrap/Nav";
 import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
-import mtcart from '../assets/cart-empty.png'
- import {useSelector} from "react-redux"
+import mtcart from "../assets/cart-empty.png";
+import { useSelector } from "react-redux";
+import Table from "react-bootstrap/esm/Table";
 function Header() {
-
-  const getData = useSelector((state)=>state.cartReducer)
+  const getData = useSelector((state) => state.cartReducer.carts);
   console.log(getData);
-  
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -20,7 +20,6 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <div>
       <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
@@ -33,8 +32,9 @@ function Header() {
               Home
             </NavLink>
           </Nav>
+
           <Badge
-            badgeContent={4}
+            badgeContent={getData.length}
             color="warning"
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
@@ -43,27 +43,78 @@ function Header() {
             onClick={handleClick}
           >
             <i
-              class="fa-solid fa-cart-shopping text-light"
+              className="fa-solid fa-cart-shopping text-light"
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>
         </Container>
         <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-       <div className="card_details d-flex justify-content-center align-items-center" style={{width:"24rem" , padding:10, position: "relative"}}>
-         <i className="fas fa-close" style={{position:"absolute", top:"5px", right:"15px" , fontSize:23,cursor:"pointer"}}
-         onClick={handleClose}></i>
-        <p >Your cart is empty</p>
-        <img style={{height:"100px" , width:"100px",margin: "0px 25px"}} src={mtcart} alt="" />
-       </div>
-      </Menu>
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+
+        {
+          getData.length ? 
+
+          <div className="card_details" style={{width:"24rem", padding:10}}>
+            <Table>
+              <thead>
+                <th>Photo</th>
+                <th>Restarant Name</th>
+              </thead>
+              <tbody>
+              {
+                getData.map((e)=>{
+                  return(
+                    <>
+                      <tr>
+                        <td>
+                          <img src={e.imgdata} style={{width:"5rem", height:"5rem"}} alt="" />
+                        </td>
+                        <td>
+                          <p>{e.rname}</p>
+                          <p>Price : ₹ {e.price}</p>
+                          <p>Quantity :  {e.qnty}</p>
+                        </td>
+                      </tr>
+                    </>
+                  )
+                })
+              }
+              </tbody>
+            </Table>
+          </div>
+           :
+          <div
+            className="card_details d-flex justify-content-center align-items-center"
+            style={{ width: "24rem", padding: 10, position: "relative" }}
+          >
+            <i
+              className="fas fa-close"
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "15px",
+                fontSize: 23,
+                cursor: "pointer",
+              }}
+              onClick={handleClose}
+            ></i>
+            <p>Your cart is empty</p>
+            <img
+              style={{ height: "100px", width: "100px", margin: "0px 25px" }}
+              src={mtcart}
+              alt=""
+            />
+          </div>
+        }
+          
+        </Menu>
       </Navbar>
     </div>
   );
