@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import Table from "react-bootstrap/esm/Table";
 function Header() {
   const getData = useSelector((state) => state.cartReducer.carts);
-  console.log(getData);
+  // console.log(getData);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -21,8 +21,8 @@ function Header() {
     setAnchorEl(null);
   };
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
+    <div >
+      <Navbar className="" bg="dark" variant="dark" style={{ height: "60px" }}>
         <Container>
           <NavLink to="/" className="text-decoration-none text-light mx-3">
             Foodie
@@ -74,18 +74,28 @@ function Header() {
                     <>
                       <tr>
                         <td>
+                        <NavLink to={`/cart/${e.id}`}onClick={handleClose}>
+
                           <img src={e.imgdata} style={{width:"5rem", height:"5rem"}} alt="" />
+                        </NavLink>
                         </td>
                         <td>
                           <p>{e.rname}</p>
                           <p>Price : ₹ {e.price}</p>
                           <p>Quantity :  {e.qnty}</p>
+                          <p>
+                            <i style={{color:"red" , fontSize:"25px" ,cursor:"pointer"}} className="fas fa-trash smalltrash"></i>
+                          </p>
+                        </td>
+                        <td>
+                          <i style={{color:"red" , fontSize:"25px" ,cursor:"pointer"}} className="fas fa-trash largetrash "></i>
                         </td>
                       </tr>
                     </>
                   )
                 })
               }
+              <p className=" text-center pt-3">Total : ₹ 350</p>
               </tbody>
             </Table>
           </div>

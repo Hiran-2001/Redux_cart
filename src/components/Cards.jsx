@@ -15,7 +15,7 @@ function Cards() {
    dispatch(ADD_TO_CART(e))
   }
   return (
-    <div className="container mt-3">
+    <div  className="container mt-3">
       <h2 className="text-center">Taste It</h2>
 
       <div className="row d-flex justify-content-center align-item-center">
