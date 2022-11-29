@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ADD_TO_CART, DLT } from "../Redux/actions/action";
 
 function CardsDetails() {
   const [data, setData] = useState([]);
   const getData = useSelector((state) => state.cartReducer.carts);
   // console.log(getData);
   const { id } = useParams();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   // console.log(id);
 
   const compareData = () => {
@@ -16,11 +19,22 @@ function CardsDetails() {
     });
     setData(compare);
   };
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     compareData();
   }, [id]);
+
+
+  const send=(e)=>{
+    console.log(e);
+       dispatch(ADD_TO_CART(e))
+      }
+
+  const dlt = (id)=>{
+    dispatch(DLT(id));
+    navigate('/')
+  }
   return (
     <>
       <div className="container mt-2">
@@ -53,6 +67,11 @@ function CardsDetails() {
                         <p>
                           <strong>Total</strong> : ₹ 300
                         </p>
+                        <div id="counter" className=" primary mt-5 d-flex justify-content-between align-item-center" style={{width:100, color:"white", backgroundColor:"#0d6efd ", cursor:"pointer" ,borderRadius:"10px"}}>
+                         <span style={{fontSize:24}}>-</span>
+                         <span style={{fontSize:22}}>{ele.qnty}</span>
+                         <span style={{fontSize:24}} onClick={()=>send(ele)}>+</span>
+                        </div>
                       </td>
                       <td>
                         <p>
@@ -80,9 +99,10 @@ function CardsDetails() {
                               color: "red",
                               fontSize: "15px",
                               cursor: "pointer",
+                              marginLeft:"10px"
                             }}
+                            onClick={()=>{dlt(ele.id)}}
                           >
-                            {" "}
                             <i className="fas fa-trash "></i>
                           </span>
                         </p>

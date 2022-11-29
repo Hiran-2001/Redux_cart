@@ -35,6 +35,10 @@
   .rating{
       background-color: green;
   }
+
+  .counter{
+    /* background-color: red; */
+  }
   
   @media (max-width:772px){
       .iteamsdetails{
