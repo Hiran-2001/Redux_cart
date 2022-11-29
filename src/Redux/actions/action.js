@@ -11,3 +11,10 @@ export const DLT = (id)=>{
         payload :id
     }
 }
+
+export const RMV_QNTY =(items)=>{
+    return {
+        type:"RMV_QNTY",
+        payload:items
+    }
+}

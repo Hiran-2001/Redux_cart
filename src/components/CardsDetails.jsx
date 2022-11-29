@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { ADD_TO_CART, DLT } from "../Redux/actions/action";
+import { ADD_TO_CART, DLT, RMV_QNTY } from "../Redux/actions/action";
 
 function CardsDetails() {
   const [data, setData] = useState([]);
@@ -31,6 +31,9 @@ function CardsDetails() {
        dispatch(ADD_TO_CART(e))
       }
 
+      const rmvQnty =(e)=>{
+        dispatch(RMV_QNTY(e))
+      }
   const dlt = (id)=>{
     dispatch(DLT(id));
     navigate('/')
@@ -65,10 +68,10 @@ function CardsDetails() {
                           Mughalai
                         </p>
                         <p>
-                          <strong>Total</strong> : ₹ 300
+                          <strong>Total</strong> : ₹ {ele.price * ele.qnty}
                         </p>
                         <div id="counter" className=" primary mt-5 d-flex justify-content-between align-item-center" style={{width:100, color:"white", backgroundColor:"#0d6efd ", cursor:"pointer" ,borderRadius:"10px"}}>
-                         <span style={{fontSize:24}}>-</span>
+                         <span style={{fontSize:24}} onClick={ele.qnty <=1 ? ()=>dlt(ele.id) : ()=>rmvQnty(ele)}>-</span>
                          <span style={{fontSize:22}}>{ele.qnty}</span>
                          <span style={{fontSize:24}} onClick={()=>send(ele)}>+</span>
                         </div>

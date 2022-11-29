@@ -28,11 +28,13 @@ function Header() {
   const dlt = (id) => {
     dispatch(DLT(id));
   };
+  
+ 
 
   const total = ()=>{
     let price = 0;
     getData.map((e)=>{
-      return  price = e.price + price;
+      return  price = e.price * e.qnty + price;
     })
     setPrice(price)
   }
