@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Cardsdata from "./CardData";
 import './style.css'
 import { ADD_TO_CART } from "../Redux/actions/action";
+import Search from "./Search";
 function Cards() {
   const [data] = useState(Cardsdata);
 
@@ -17,6 +18,7 @@ function Cards() {
   return (
     <div  className="container mt-3">
       <h2 className="text-center">Taste It</h2>
+    <Search/>
 
       <div className="row d-flex justify-content-center align-item-center">
         {data.map((e ,key) => {
