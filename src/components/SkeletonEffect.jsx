@@ -3,11 +3,9 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 function SkeletonEffect({ count }) {
   return (
-    <div className="Skeleton">
+    <div style={{marginTop:42,marginLeft:"220px"    }} className="main">
       {count.map((e) => {
         return (
-      <div className="main">
-
              <Stack  spacing={1}>
             <Skeleton
               variant="rounded"
@@ -39,7 +37,6 @@ function SkeletonEffect({ count }) {
               height={"30px"}
             />
           </Stack> 
-                </div>
 
         );
       })}

@@ -31,7 +31,10 @@ function Cards() {
         <h2 className="text-center">Taste It</h2>
         <Search state={carddata} setState={setCarddata} />
 
-        <div id="main" className=" justify-content-center align-item-center">
+        <div
+          id="main"
+          className="row d-flex justify-content-center align-items-center"
+        >
           {carddata && carddata.length ? (
             carddata.map((e, key) => {
               return (
@@ -65,7 +68,8 @@ function Cards() {
             })
           ) : (
             <Skeleton count={data} />
-          )}
+          )
+          }
         </div>
         {/* <Skeleton count={data}/> */}
       </div>
