@@ -1,9 +1,12 @@
-import "./App.css";
+
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import CardsDetails from "./components/CardsDetails";
 import Cards from "./components/Cards";
+import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
+import Profile from "./components/Profile/Profile";
 // import axios from "axios"
 // import { useEffect } from "react";
 function App() {
@@ -23,6 +26,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Cards/>} />
         <Route path="/cart/:id" element={<CardsDetails/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signin" element={<Register/>} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
     </div>
   );

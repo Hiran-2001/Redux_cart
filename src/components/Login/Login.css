@@ -1,0 +1,52 @@
+.form-container{
+    background-color: rgb(230, 230, 238);
+    display: flex;
+    justify-content: center;
+    height: 87.9vh;
+}
+.form{
+    width: 30vw;
+    height: 50vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin-top: 10vh;
+    
+}
+.login-form{
+    width: 30vw;
+    height: 39vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin-top: 10vh;
+}
+Form > h2{
+   margin-left: 30px;
+   margin-top: 10px;
+   font-size: 2rem;
+   line-height: 4rem;
+   color: rgb(79, 79, 79);
+   font-family: Okra, Helvetica, sans-serif;
+   font-weight: 500;
+}
+.formControl{
+   width: 25vw;
+   margin: 35px 30px;
+}
+.form-btn{
+    background-color: red;
+    border: none;
+    width: 25vw;
+    margin: 20px 30px;
+}
+.form-btn:hover{
+    background-color: rgb(235, 60, 60);
+}
+.sign-to-login{
+    display: flex;
+    justify-content: center;
+   
+}
+.to-login{
+    text-decoration: none;
+    color: red;
+}

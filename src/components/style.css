@@ -49,6 +49,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 45px;
+    justify-content: center;
+    align-items: center;
  }
  /* #main{
     display: flex;

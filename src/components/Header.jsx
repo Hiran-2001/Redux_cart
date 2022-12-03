@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/esm/Table";
 import { DLT } from "../Redux/actions/action";
 import { useEffect } from "react";
+import { Avatar } from "@mui/material";
+import Button from '@mui/material/Button';
 function Header() {
-  
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,29 +24,29 @@ function Header() {
   };
 
   const getData = useSelector((state) => state.cartReducer.carts);
-  const [price , setPrice] = useState(0)
+  const [price, setPrice] = useState(0)
   const dispatch = useDispatch();
 
   const dlt = (id) => {
     dispatch(DLT(id));
   };
-  
- 
 
-  const total = ()=>{
+
+
+  const total = () => {
     let price = 0;
-    getData.map((e)=>{
-      return  price = e.price * e.qnty + price;
+    getData.map((e) => {
+      return price = e.price * e.qnty + price;
     })
     setPrice(price)
   }
 
   useEffect(() => {
-   total()
+    total()
   }, [total]);
   return (
     <div>
-      <Navbar className="" bg="dark" variant="dark" style={{ height: "60px" }}>
+      <Navbar className="" bg="dark" variant="dark" style={{ height: "80px" }}>
         <Container>
           <NavLink to="/" className="text-decoration-none text-light mx-3">
             Foodie
@@ -54,6 +56,11 @@ function Header() {
               Home
             </NavLink>
           </Nav>
+          
+          <NavLink style={{textDecoration:"none"}} to={`/login`}> <Button style={{marginRight:15 , color:"white"}} variant="text">Log in</Button></NavLink>
+          <NavLink style={{textDecoration:"none"}}  to={`/signin`}><Button style={{marginRight:35 , color:"white"}} variant="text">Sign in</Button></NavLink>
+          
+
 
           <Badge
             badgeContent={getData.length}
@@ -69,6 +76,14 @@ function Header() {
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>
+          <NavLink to={'/profile'}>
+          <Avatar
+            // src="/static/images/avatar/1.jpg"
+            sx={{ width: 35, height: 35 }}
+            style={{marginLeft:65}}
+          />
+          </NavLink>
+          
         </Container>
         <Menu
           id="basic-menu"
@@ -107,7 +122,7 @@ function Header() {
                             <p>{e.rname}</p>
                             <p>Price : ₹ {e.price}</p>
                             <p>Quantity : {e.qnty}</p>
-                            <p onClick={()=>dlt(e.id)}>
+                            <p onClick={() => dlt(e.id)}>
                               <i
                                 style={{
                                   color: "red",
@@ -118,7 +133,7 @@ function Header() {
                               ></i>
                             </p>
                           </td>
-                          <td  onClick={()=>dlt(e.id)}>
+                          <td onClick={() => dlt(e.id)}>
                             <i
                               style={{
                                 color: "red",
