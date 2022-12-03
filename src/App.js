@@ -4,7 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import CardsDetails from "./components/CardsDetails";
 import Cards from "./components/Cards";
+// import axios from "axios"
+// import { useEffect } from "react";
 function App() {
+  
+  // const getData=()=>{
+  //   axios.get("/food").then((res)=>{
+  //     console.log(res.data);
+  //   })
+  // }
+  // useEffect(() => {
+  //  getData()
+  // }, []);
 
   return (
     <div className="App">
