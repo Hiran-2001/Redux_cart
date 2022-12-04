@@ -1,5 +1,5 @@
 .form-container{
-    background-color: rgb(230, 230, 238);
+    background-color: rgb(223, 222, 222);
     display: flex;
     justify-content: center;
     height: 87.9vh;
@@ -10,8 +10,9 @@
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin-top: 10vh;
-    
+    box-shadow:  1px 2px 25px 5px rgb(120, 120, 120);
 }
+
 .login-form{
     width: 30vw;
     height: 16rem;
@@ -37,14 +38,15 @@ Form > h2{
     border: none;
     width: 25vw;
     margin: 20px 30px;
+    box-shadow:  1px 2px 25px 5px rgb(234, 117, 117);
+    
 }
 .form-btn:hover{
-    background-color: rgb(235, 60, 60);
+    background-color: rgb(255, 0, 0);
 }
 .sign-to-login{
     display: flex;
     justify-content: center;
-   
 }
 .to-login{
     text-decoration: none;

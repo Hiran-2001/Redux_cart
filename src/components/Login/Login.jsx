@@ -24,11 +24,11 @@ function Login() {
       </Form.Group>
       
       <Button className='form-btn' type="submit">
-        Create Account
+        Login
       </Button>
        
        <div className="sign-to-login">
-       <h6>New to Foodie? <Link className='to-login' to={'/signin'}>Login</Link></h6>
+       <h6>New to Foodie? <Link className='to-login' to={'/signin'}>Create account</Link></h6>
        </div>
       
     </Form>
