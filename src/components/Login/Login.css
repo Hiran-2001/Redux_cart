@@ -6,7 +6,7 @@
 }
 .form{
     width: 30vw;
-    height: 50vh;
+    height: 20rem;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin-top: 10vh;
@@ -14,7 +14,7 @@
 }
 .login-form{
     width: 30vw;
-    height: 39vh;
+    height: 16rem;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin-top: 10vh;
