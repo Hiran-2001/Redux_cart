@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios"
 
 function Register() {
   const [showPass, setShowPass] = useState(false);
@@ -28,7 +29,7 @@ function Register() {
     });
   };
 
-  const addUser = (e) => {
+  const addUser = async (e) => {
     const { fname, email, password, cpassword } = inputValue;
 
     e.preventDefault();
@@ -50,7 +51,12 @@ function Register() {
     } else if (password !== cpassword) {
       alert("password and confirm password doesnt match");
     } else {
-      alert("user register successfully");
+      
+    const res = await axios.post("/addUser" ,{
+      inputValue
+    })
+    console.log(res);
+
     }
   };
 
@@ -65,7 +71,7 @@ function Register() {
                 className="formControl"
                 onChange={setValue}
                 value={inputValue.fname}
-                name="fname"
+                name="name"
                 type="text"
                 placeholder="Full Name"
               />
@@ -77,7 +83,7 @@ function Register() {
                 value={inputValue.email}
                 name="email"
                 type="email"
-                placeholder="Email"
+                placeholder="email"
               />
             </Form.Group>
 
@@ -113,7 +119,7 @@ function Register() {
                 onChange={setValue}
                 type={!cshowPass ? "password" : "text"}
                 value={inputValue.cpassword}
-                name="cpassword"
+                name="confirmPassword"
                 placeholder="Password"
               />
               <Button

@@ -1,21 +1,21 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 const userSchema = mongoose.Schema({
-    Name:{
+    name:{
         type:String,
         required:true,
         trim:true
     },
-    Email:{
-        type:String,
-        required:true,
-        unique:true,
-        validate(value){
-            if (!validator.isEmail(value)) {
-                throw new Error("not valid email")
-            }
-        }
-    },
+    // email:{
+    //     type:String,
+    //     required:true,
+    //     unique:true,
+    //     // validate(value){
+    //     //     if (!validator.isEmail(value)) {
+    //     //         throw new Error("not valid email")
+    //     //     }
+    //     // }
+    // },
     phoneNumber:{
         type:String,
         // required:true,
@@ -42,4 +42,4 @@ const userSchema = mongoose.Schema({
     ]
 })
 
-module.exports = mongoose.model('/userData' , userSchema)
+module.exports = mongoose.model('userData' , userSchema)
