@@ -34,7 +34,7 @@ function Search({state , setState}) {
         placeholder="Search Here" 
         onChange={(e)=>{search(e.target.value)}}
       />
-            <Button style={{marginLeft:"25px"}} variant="primary">Danger</Button>
+            <Button style={{marginLeft:"25px"}} variant="primary">Search</Button>
       </div>
 
     </>

@@ -1,8 +1,13 @@
 import React from 'react'
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import {FaEye , FaEyeSlash} from "react-icons/fa"
+
 function Register() {
+  const [showPass, setShowPass] = useState(false)
+
   return (
     <>
     <div className="form-container">
@@ -15,18 +20,20 @@ function Register() {
         <Form.Control className='formControl' type="text" placeholder="Full Name" />
        
       </Form.Group>
-      <Form.Group className="mb-3" >
+      <Form.Group className="mt-5" >
         
         <Form.Control  className='formControl' type="email" placeholder="Email" />
        
       </Form.Group>
 
-      <Form.Group className="mb-3" >
-        
+      <div className="password">
         <Form.Control  className='formControl' type="password" placeholder="Password" />
-      </Form.Group>
+         <Button id='showPass'  onClick={()=>{setShowPass(!showPass)}}  style={{width:45 , height:38, marginTop:20, marginLeft:-30 , color:'white'}}>
+         { !showPass ? <FaEyeSlash/> : <FaEye/> }         </Button>
+         
+      </div>
       
-      <Button className='form-btn' type="submit">
+      <Button className='form-btn mt-3' type="submit">
         Create Account
       </Button>
        

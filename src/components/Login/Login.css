@@ -1,54 +1,84 @@
-.form-container{
-    background-color: rgb(223, 222, 222);
-    display: flex;
-    justify-content: center;
-    height: 87.9vh;
+.form-container {
+  background-color: rgb(27, 27, 27) ; 
+  background-image: url("../../assets/bg-img.jpg");
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-position: center;
+  color: white;
 }
-.form{
-    width: 30vw;
-    height: 20rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    margin-top: 10vh;
-    box-shadow:  1px 2px 25px 5px rgb(120, 120, 120);
+.form {
+  width: 25rem;
+  height: 30rem;
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 10px;
+  margin-top: 10vh;
+  box-shadow: 1px 2px 25px 2px rgb(0, 0, 0);
+  /* transform: rotate(45deg); */
+  
 }
 
-.login-form{
-    width: 30vw;
-    height: 16rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    margin-top: 10vh;
+.login-form {
+  width: 25rem;
+  height: 25rem;
+  /* background-color: rgb(0, 0, 0); */
+  border-radius: 10px;
+  margin-top: 10vh;
+  box-shadow: 1px 2px 25px 2px rgb(0, 0, 0);
 }
-Form > h2{
-   margin-left: 30px;
-   margin-top: 10px;
-   font-size: 2rem;
-   line-height: 4rem;
-   color: rgb(79, 79, 79);
-   font-family: Okra, Helvetica, sans-serif;
-   font-weight: 500;
+Form > h2 {
+  margin-left: 30px;
+  margin-top: 10px;
+  font-size: 2rem;
+  line-height: 4rem;
+  color: rgb(255, 255, 255);
+  font-family: Okra, Helvetica, sans-serif;
+  font-weight: 500;
 }
-.formControl{
-   width: 25vw;
-   margin: 35px 30px;
+
+.formControl {
+  width: 20rem;
+  margin: 20px 30px;
+  /* border: none;
+  border-bottom: 2px solid red; */
+  background : none;
+  color: white;
 }
-.form-btn{
-    background-color: red;
-    border: none;
-    width: 25vw;
-    margin: 20px 30px;
-    box-shadow:  1px 2px 25px 5px rgb(234, 117, 117);
-    
+.formGroup{
+    background: none;
 }
-.form-btn:hover{
-    background-color: rgb(255, 0, 0);
+.form-btn {
+  background-color: rgb(255, 0, 123);
+  border: none;
+  width: 20rem;
+  margin: 5px 30px;
+  /* box-shadow:  0px 0px 25px 5px rgb(234, 117, 117); */
 }
-.sign-to-login{
-    display: flex;
-    justify-content: center;
+.form-btn:hover {
+  background-color: rgb(255, 0, 145);
 }
-.to-login{
-    text-decoration: none;
-    color: red;
+.sign-to-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.to-login {
+  text-decoration: none;
+  color: rgb(255, 0, 93);
+  margin-top: 10px;
+}
+
+.password {
+  display: flex;
+  /* background-color: rgb(106, 43, 43); */
+}
+#showPass {
+  border: none;
+  background: none;
+}
+#showPass:hover {
+  background:none;
+  border: none;
 }
