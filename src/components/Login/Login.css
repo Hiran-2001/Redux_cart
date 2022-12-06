@@ -1,5 +1,4 @@
 .form-container {
-  background-color: rgb(27, 27, 27) ; 
   background-image: url("../../assets/bg-img.jpg");
   display: flex;
   justify-content: center;
@@ -8,16 +7,17 @@
   /* background-size: cover; */
   background-position: center;
   color: white;
+
 }
 .form {
   width: 25rem;
-  height: 30rem;
+  height: 35rem;
   /* background-color: rgb(255, 255, 255); */
   border-radius: 10px;
   margin-top: 10vh;
   box-shadow: 1px 2px 25px 2px rgb(0, 0, 0);
   /* transform: rotate(45deg); */
-  
+  /* margin-left: 180px; */
 }
 
 .login-form {
@@ -27,6 +27,7 @@
   border-radius: 10px;
   margin-top: 10vh;
   box-shadow: 1px 2px 25px 2px rgb(0, 0, 0);
+
 }
 Form > h2 {
   margin-left: 30px;
@@ -62,7 +63,7 @@ Form > h2 {
 .sign-to-login {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .to-login {
   text-decoration: none;

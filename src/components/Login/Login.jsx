@@ -25,8 +25,8 @@ function Login() {
 
       <Form.Group style={{display:"flex"}} className="mb-3" >
   
-        <Form.Control  className='formControl' type="password" placeholder="Password" />
-          <Button id='showPass' onClick={()=>{setShowPass(!showPass)}} variant="light" style={{width:45 , height:38, marginTop:20, marginLeft:-30, }}>
+        <Form.Control  className='formControl' type={!showPass ? "password" : "text"} placeholder="Password" />
+          <Button id='showPass' onClick={()=>{setShowPass(!showPass)}} variant="light" style={{width:45 , height:38, marginTop:20, marginLeft:-30,color:"white"  }}>
            { !showPass ? <FaEyeSlash/> : <FaEye/> }
            
           </Button>
