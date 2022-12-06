@@ -31,11 +31,11 @@ function Register() {
   const addUser = (e) => {
     const { fname, email, password, cpassword } = inputValue;
 
-    e.prevent.default();
+    e.preventDefault();
 
     if (fname === "") {
       alert("please enter your name");
-    } else if (email === "") {
+    }else if (email === "") {
       alert("please enter your email");
     } else if (!email.includes("@")) {
       alert("please enter valid email");
@@ -44,11 +44,11 @@ function Register() {
     } else if (password.length < 8) {
       alert("password must be 8 characters");
     } else if (cpassword === "") {
-      alert("please enter your cpassword");
+      alert("please confirm your password");
     } else if (cpassword.length < 8) {
       alert("cpassword must be 8 characters");
     } else if (password !== cpassword) {
-      alert("password and confirm cpassword doesnt match");
+      alert("password and confirm password doesnt match");
     } else {
       alert("user register successfully");
     }
