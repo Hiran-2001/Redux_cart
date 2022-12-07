@@ -11,7 +11,7 @@ function Register() {
   const [cshowPass, setCshowPass] = useState(false);
 
   const [inputValue, setInputValue] = useState({
-    fname: "",
+    name: "",
     email: "",
     password: "",
     cpassword: "",
@@ -30,11 +30,11 @@ function Register() {
   };
 
   const addUser = async (e) => {
-    const { fname, email, password, cpassword } = inputValue;
+    const { name, email, password, confirmPassword } = inputValue;
 
     e.preventDefault();
 
-    if (fname === "") {
+    if (name === "") {
       alert("please enter your name");
     }else if (email === "") {
       alert("please enter your email");
@@ -44,16 +44,16 @@ function Register() {
       alert("please enter your password");
     } else if (password.length < 8) {
       alert("password must be 8 characters");
-    } else if (cpassword === "") {
+    } else if (confirmPassword === "") {
       alert("please confirm your password");
-    } else if (cpassword.length < 8) {
+    } else if (confirmPassword.length < 8) {
       alert("cpassword must be 8 characters");
-    } else if (password !== cpassword) {
+    } else if (password !== confirmPassword) {
       alert("password and confirm password doesnt match");
     } else {
       
     const res = await axios.post("/addUser" ,{
-      inputValue
+      name, email, password, confirmPassword
     })
     console.log(res);
 
@@ -70,7 +70,7 @@ function Register() {
               <Form.Control
                 className="formControl"
                 onChange={setValue}
-                value={inputValue.fname}
+                value={inputValue.name}
                 name="name"
                 type="text"
                 placeholder="Full Name"
@@ -118,7 +118,7 @@ function Register() {
                 className="formControl"
                 onChange={setValue}
                 type={!cshowPass ? "password" : "text"}
-                value={inputValue.cpassword}
+                value={inputValue.confirmPassword}
                 name="confirmPassword"
                 placeholder="Password"
               />

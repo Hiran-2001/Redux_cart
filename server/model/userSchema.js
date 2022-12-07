@@ -1,45 +1,22 @@
 const mongoose = require("mongoose")
-const validator = require("validator")
+
 const userSchema = mongoose.Schema({
     name:{
         type:String,
         required:true,
-        trim:true
     },
-    // email:{
-    //     type:String,
-    //     required:true,
-    //     unique:true,
-    //     // validate(value){
-    //     //     if (!validator.isEmail(value)) {
-    //     //         throw new Error("not valid email")
-    //     //     }
-    //     // }
-    // },
-    phoneNumber:{
-        type:String,
-        // required:true,
-        unique:true
-    },
-    password:{
+    email:{
         type:String,
         required:true,
-        select:false,
-        minlength:6
     },
-    confirmPassword:{
+    place:{
         type:String,
         required:true,
-        minlength:6
     },
-    Tokens:[
-        {
-            token:{
-                type:String,
-                required:true
-            }
-        }
-    ]
+    number:{
+        type:Number,
+        required:true,
+    }
 })
 
-module.exports = mongoose.model('userData' , userSchema)
+module.exports = mongoose.model("userData", userSchema)
