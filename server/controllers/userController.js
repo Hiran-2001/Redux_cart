@@ -1,11 +1,42 @@
 const userModel = require("../model/userSchema")
 
 exports.createUser = async(req,res)=>{
-    const user = await userModel.create(req.body)
-        res.status(201).json({
-            success:true,
-            user
-           })
+
+    const { name, email, password, confirmPassword } = req.body;
+
+    if (!name || !email || !password || !confirmPassword ) {
+      res.status(422).send("plz fill all fields");
+      console.log("plzz fill all fileds");
+    }else{
+  
+      try {
+        const anyUser = await userModel.findOne({ email: email });
+        // console.log(anyUser);
+    
+        if (anyUser) {
+          res.status(422).send("email is already taken");
+          console.log("email already taken");
+        } else {
+          const addUser = new userModel({
+            name,
+            email,
+            password,
+            confirmPassword,
+           
+          });
+
+          // here we will hash our password
+
+
+          await addUser.save();
+          res.status(201).send("user created ");
+        //   console.log(addUser);
+        }
+      }catch(err){
+        res.status(422)
+      }
+  
+    }
     
 }
 

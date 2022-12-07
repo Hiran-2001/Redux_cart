@@ -14,7 +14,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
-    cpassword: "",
+    confirmPassword: "",
   });
 
   console.log(inputValue);
@@ -52,11 +52,12 @@ function Register() {
       alert("password and confirm password doesnt match");
     } else {
       
-    const res = await axios.post("/addUser" ,{
+    const res = await axios.post("/register" ,{
       name, email, password, confirmPassword
     })
-    console.log(res);
-
+      
+    if(res.status === 201)
+      setInputValue({...inputValue,name:"",email:"",password:"",confirmPassword:""})
     }
   };
 
