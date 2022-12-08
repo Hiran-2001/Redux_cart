@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import "./Login.css"
 import {FaEye , FaEyeSlash} from "react-icons/fa"
+import axios from "axios";
+
 function Login() {
 
   const [showPass, setShowPass] = useState(false)
@@ -24,7 +26,7 @@ function Login() {
     });
   };
 
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     const { email, password } = inputValue;
 
     e.preventDefault();
@@ -38,7 +40,20 @@ function Login() {
     } else if (password.length < 8) {
       alert("password must be 8 characters");
     }else {
+      const res = await axios.post("/login",{
+        email,
+        password,
+      })
       alert("user Login successfully");
+      if (res.status === 201)
+        setInputValue({
+          ...inputValue,
+          
+          email: "",
+          password: "",
+         
+        });
+          
     }
   };
   return (
@@ -51,7 +66,7 @@ function Login() {
       
       <Form.Group id ="formGroup" className="mb-3" >
         
-        <Form.Control onChange={setValue} value={inputValue.email} name="email" className='formControl' type="email" placeholder="Email" />
+        <Form.Control autoComplete='off' onChange={setValue} value={inputValue.email} name="email" className='formControl' type="email" placeholder="Email" />
        
       </Form.Group>
 
@@ -59,7 +74,7 @@ function Login() {
 
       <Form.Group style={{display:"flex"}} className="mb-3" >
   
-        <Form.Control  onChange={setValue} value={inputValue.password} name="password"  className='formControl' type={!showPass ? "password" : "text"} placeholder="Password" />
+        <Form.Control  autoComplete='off' onChange={setValue} value={inputValue.password} name="password"  className='formControl' type={!showPass ? "password" : "text"} placeholder="Password" />
           <Button id='showPass' onClick={()=>{setShowPass(!showPass)}} variant="light" style={{width:45 , height:38, marginTop:20, marginLeft:-30,color:"white"  }}>
            { !showPass ? <FaEyeSlash/> : <FaEye/> }
            

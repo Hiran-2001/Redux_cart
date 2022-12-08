@@ -57,6 +57,7 @@ function Register() {
         password,
         confirmPassword,
       });
+      alert("user created")
 
       if (res.status === 201)
         setInputValue({
@@ -83,6 +84,7 @@ function Register() {
                 name="name"
                 type="text"
                 placeholder="Full Name"
+                autoComplete="off"
               />
             </Form.Group>
             <Form.Group className="mt-5">
@@ -93,6 +95,8 @@ function Register() {
                 name="email"
                 type="email"
                 placeholder="email"
+                autoComplete="off"
+
               />
             </Form.Group>
 

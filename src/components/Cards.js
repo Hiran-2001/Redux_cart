@@ -23,7 +23,7 @@ function Cards() {
   useEffect(() => {
     setTimeout(() => {
       setCarddata(Cardsdata);
-    }, 1500);
+    }, 500);
   }, []);
   return (
     <>

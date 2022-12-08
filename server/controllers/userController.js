@@ -1,5 +1,10 @@
 const userModel = require("../model/userSchema")
 
+
+
+// register a user 
+
+
 exports.createUser = async(req,res)=>{
 
     const { name, email, password, confirmPassword } = req.body;
@@ -40,6 +45,10 @@ exports.createUser = async(req,res)=>{
     
 }
 
+
+// get all user data 
+
+
 exports.getAllUser = async(req,res)=>{
     const user = await userModel.find();
     res.status(201).json({
@@ -47,6 +56,10 @@ exports.getAllUser = async(req,res)=>{
         user
     })
 }
+
+// get single user data 
+
+
 
 exports.getSingleUser = async(req,res)=>{
     const {id} = req.params
@@ -57,4 +70,11 @@ exports.getSingleUser = async(req,res)=>{
      success:true,
      singleuser
      })
+}
+
+
+// user login api 
+
+exports.loginUser = async(req,res)=>{
+  console.log(req.body);
 }
