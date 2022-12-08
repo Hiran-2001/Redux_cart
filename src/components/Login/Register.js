@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios"
+import axios from "axios";
 
 function Register() {
   const [showPass, setShowPass] = useState(false);
@@ -36,7 +36,7 @@ function Register() {
 
     if (name === "") {
       alert("please enter your name");
-    }else if (email === "") {
+    } else if (email === "") {
       alert("please enter your email");
     } else if (!email.includes("@")) {
       alert("please enter valid email");
@@ -51,13 +51,21 @@ function Register() {
     } else if (password !== confirmPassword) {
       alert("password and confirm password doesnt match");
     } else {
-      
-    const res = await axios.post("/register" ,{
-      name, email, password, confirmPassword
-    })
-      
-    if(res.status === 201)
-      setInputValue({...inputValue,name:"",email:"",password:"",confirmPassword:""})
+      const res = await axios.post("/register", {
+        name,
+        email,
+        password,
+        confirmPassword,
+      });
+
+      if (res.status === 201)
+        setInputValue({
+          ...inputValue,
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
     }
   };
 
