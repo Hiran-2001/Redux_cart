@@ -46,19 +46,19 @@ function Header() {
   }, [total]);
   return (
     <div>
-      <Navbar className=""  style={{ height: "80px" , backgroundColor:"black" }}>
+      <Navbar className=""  style={{ height: "80px" , backgroundColor:"white"  }}>
         <Container>
-          <NavLink to="/" className="text-decoration-none text-light mx-3">
+          <NavLink to="/" className="text-decoration-none text-dark mx-3">
             Foodie
           </NavLink>
           <Nav className="me-auto">
-            <NavLink to="/" className="text-decoration-none text-light">
+            <NavLink to="/" className="text-decoration-none text-dark">
               Home
             </NavLink>
           </Nav>
           
-          <NavLink style={{textDecoration:"none"}} to={`/login`}> <Button style={{marginRight:15 , color:"white"}} variant="text">Log in</Button></NavLink>
-          <NavLink style={{textDecoration:"none"}}  to={`/signin`}><Button style={{marginRight:35 , color:"white"}} variant="text">Sign in</Button></NavLink>
+          <NavLink style={{textDecoration:"none"}} to={`/login`}> <Button style={{marginRight:15 , color:"black"}} variant="text">Log in</Button></NavLink>
+          <NavLink style={{textDecoration:"none"}}  to={`/signin`}><Button style={{marginRight:35 , color:"black"}} variant="text">Sign in</Button></NavLink>
           
 
 
@@ -72,7 +72,7 @@ function Header() {
             onClick={handleClick}
           >
             <i
-              className="fa-solid fa-cart-shopping text-light"
+              className="fa-solid fa-cart-shopping text-dark"
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>

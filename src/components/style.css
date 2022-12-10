@@ -52,6 +52,11 @@
     justify-content: center;
     align-items: center;
  }
+ #title-search{
+    background-image: url('../assets//home-bgc.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
  /* #main{
     display: flex;
     flex-wrap: wrap;

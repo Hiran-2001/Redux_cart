@@ -26,11 +26,15 @@ function Cards() {
     }, 500);
   }, []);
   return (
-    <>
-      <div className="container mt-3">
-        <h2 className="text-center">Taste It</h2>
+    <div id="card-main" style={{ backgroundColor: "red" }}>
+
+      <div id="title-search" style={{height:"25rem"}}>
+
+        <h2  className="text-center">Taste It</h2>
         <Search state={carddata} setState={setCarddata} />
 
+      </div>
+      <div className="container mt-3">
         <div
           id="main"
           className="row d-flex justify-content-center align-items-center"
@@ -73,7 +77,7 @@ function Cards() {
         </div>
         {/* <Skeleton count={data}/> */}
       </div>
-    </>
+    </div>
   );
 }
 
