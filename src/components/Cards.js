@@ -26,11 +26,11 @@ function Cards() {
     }, 500);
   }, []);
   return (
-    <div id="card-main" style={{ backgroundColor: "red" }}>
+    <div id="card-main" style={{ backgroundColor: "white" }}>
 
-      <div id="title-search" style={{height:"25rem"}}>
+      <div id="title-search" style={{ height: "25rem" }}>
 
-        <h2  className="text-center">Taste It</h2>
+        <h2 className="text-center">Taste It</h2>
         <Search state={carddata} setState={setCarddata} />
 
       </div>

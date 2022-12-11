@@ -53,9 +53,10 @@
     align-items: center;
  }
  #title-search{
-    background-image: url('../assets//home-bgc.jpg');
+    background-image: url('../assets/bgc4.png');
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 8rem;
  }
  /* #main{
     display: flex;

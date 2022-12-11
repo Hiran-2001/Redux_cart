@@ -57,7 +57,7 @@ function Header() {
             </NavLink>
           </Nav>
           
-          <NavLink style={{textDecoration:"none"}} to={`/login`}> <Button style={{marginRight:15 , color:"black"}} variant="text">Log in</Button></NavLink>
+          <NavLink style={{textDecoration:"none", fontWeight:"bold"}} to={`/login`}> <Button style={{marginRight:15 , color:"black"}} variant="text">Log in</Button></NavLink>
           <NavLink style={{textDecoration:"none"}}  to={`/signin`}><Button style={{marginRight:35 , color:"black"}} variant="text">Sign in</Button></NavLink>
           
 

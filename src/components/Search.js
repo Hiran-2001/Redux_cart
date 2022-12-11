@@ -24,17 +24,17 @@ function Search({state , setState}) {
 
   return (
     <>
-      <div style={{marginTop:"25px"}} className="d-flex , justify-content-center">
+      <div style={{marginTop:"25px" ,height:"3rem"}} className="d-flex , justify-content-center">
 
       <Form.Control
-      style={{width:400 }}
+      style={{width:400,borderRadius:"7px 0px 0px 7px" }}
         type="text"
         id="inputText"
         // aria-describedby="passwordHelpBlock"
         placeholder="Search Here" 
         onChange={(e)=>{search(e.target.value)}}
       />
-            <Button style={{marginLeft:"25px"}} variant="primary">Search</Button>
+            <Button style={{borderRadius:"0px 7px 7px 0px", width:"6rem",color:'white'}} variant="danger">Search</Button>
       </div>
 
     </>
