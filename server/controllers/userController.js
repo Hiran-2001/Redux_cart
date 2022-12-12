@@ -76,5 +76,7 @@ exports.getSingleUser = async(req,res)=>{
 // user login api 
 
 exports.loginUser = async(req,res)=>{
+  const {email,password} = req.body;
   console.log(req.body);
+
 }
