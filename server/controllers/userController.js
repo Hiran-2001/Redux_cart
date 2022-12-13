@@ -1,4 +1,5 @@
 const userModel = require("../model/userSchema")
+const bcrypt = require("bcryptjs")
 
 
 
@@ -76,7 +77,36 @@ exports.getSingleUser = async(req,res)=>{
 // user login api 
 
 exports.loginUser = async(req,res)=>{
+  // console.log(req.body);
   const {email,password} = req.body;
-  console.log(req.body);
+
+  if(!email || !password){
+      res.send("please fill all fields")
+      console.log("please fill all fields")
+  }
+
+
+  try {
+     
+    const userValid = await userModel.findOne({email:email})
+    if (userValid) {
+      
+         const isMatch = await bcrypt.compare(password,userValid.password)
+
+         if (!isMatch) {
+          res.send("Password is incorrect")
+          console.log("Password is incorrect")
+         }else{
+          res.send("login successfully")
+          console.log("login successfully")
+         }
+    }else{
+      res.send("email not found")  
+      console.log("email not found")  
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
 
 }
