@@ -57,13 +57,17 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 8rem;
+    box-shadow: inset 0px 0px 10px 3px black
  }
  /* #main{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     margin-left: 120px;
- }                                                                                                                                   */
+ }   
+ 
+ */
+ 
   @media (max-width:772px){
       .iteamsdetails{
           flex-direction: column;

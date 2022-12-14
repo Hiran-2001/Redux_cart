@@ -24,7 +24,7 @@ function Search({state , setState}) {
 
   return (
     <>
-      <div style={{marginTop:"25px" ,height:"3rem"}} className="d-flex , justify-content-center">
+      <div id='search-div' style={{marginTop:"25px" ,height:"3rem"}} className="d-flex , justify-content-center">
 
       <Form.Control
       style={{width:400,borderRadius:"7px 0px 0px 7px" }}

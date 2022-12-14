@@ -30,7 +30,7 @@ function Cards() {
 
       <div id="title-search" style={{ height: "25rem" }}>
 
-        <h2 className="text-center">Taste It</h2>
+        <h2 style={{marginTop:"4rem", color:"white"}} className="text-center">Taste It</h2>
         <Search state={carddata} setState={setCarddata} />
 
       </div>
