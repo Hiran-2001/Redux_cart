@@ -3,9 +3,9 @@ const { createUser, getAllUser, getSingleUser, loginUser } = require("../control
 const router = express.Router()
 
 
-router.post("/register", createUser)
-router.get("/get_user", getAllUser)
-router.get("/get_single_user/:id", getSingleUser)
-router.post("/login", loginUser)
+router.post("/api/v1/register", createUser)
+router.get("/api/v1/get_user", getAllUser)
+router.get("/api/v1/get_single_user/:id", getSingleUser)
+router.post("/api/v1/login", loginUser)
 
 module.exports = router;

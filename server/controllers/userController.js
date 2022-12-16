@@ -97,8 +97,9 @@ exports.loginUser = async(req,res)=>{
           res.send("Password is incorrect")
           console.log("Password is incorrect")
          }else{
-          res.send("login successfully")
-          console.log("login successfully")
+          
+          const token = await userValid.generateAuthToken();
+          console.log(token);
          }
     }else{
       res.send("email not found")  
