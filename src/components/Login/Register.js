@@ -51,7 +51,7 @@ function Register() {
     } else if (password !== confirmPassword) {
       alert("password and confirm password doesnt match");
     } else {
-      const res = await axios.post("/register", {
+      const res = await axios.post("/api/v1/register", {
         name,
         email,
         password,

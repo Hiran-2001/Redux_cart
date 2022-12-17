@@ -1,87 +1,72 @@
-const userModel = require("../model/userSchema")
-const bcrypt = require("bcryptjs")
+const userModel = require("../model/userSchema");
+const bcrypt = require("bcryptjs");
 
+// register a user
 
+exports.createUser = async (req, res) => {
+  const { name, email, password, confirmPassword } = req.body;
 
-// register a user 
+  if (!name || !email || !password || !confirmPassword) {
+    res.status(422).send("plz fill all fields");
+    console.log("plzz fill all fileds");
+  } else {
+    try {
+      const anyUser = await userModel.findOne({ email: email });
+      // console.log(anyUser);
 
+      if (anyUser) {
+        res.status(422).send("email is already taken");
+        console.log("email already taken");
+      } else if (password !== confirmPassword) {
+        res.status(422).send("password doesnt match");
+        console.log("password doesnt match");
+      } else {
+        const addUser = new userModel({
+          name,
+          email,
+          password,
+          confirmPassword,
+        });
 
-exports.createUser = async(req,res)=>{
+        // here we will hash our password
 
-    const { name, email, password, confirmPassword } = req.body;
-
-    if (!name || !email || !password || !confirmPassword ) {
-      res.status(422).send("plz fill all fields");
-      console.log("plzz fill all fileds");
-    }else{
-  
-      try {
-        const anyUser = await userModel.findOne({ email: email });
-        // console.log(anyUser);
-    
-        if (anyUser) {
-          res.status(422).send("email is already taken");
-          console.log("email already taken");
-        }else if(password !== confirmPassword){
-          res.status(422).send("password doesnt match");
-          console.log("password doesnt match");
-        } 
-        else {
-          const addUser = new userModel({
-            name,
-            email,
-            password,
-            confirmPassword,
-           
-          });
-
-          // here we will hash our password
-
-
-          await addUser.save();
-          res.status(201).send("user created ");
+        await addUser.save();
+        res.status(201).send("user created ");
         //   console.log(addUser);
-        }
-      }catch(err){
-        res.status(422)
       }
-  
+    } catch (err) {
+      res.status(422);
     }
-    
-}
+  }
+};
 
+// get all user data
 
-// get all user data 
+exports.getAllUser = async (req, res) => {
+  const user = await userModel.find();
+  res.status(201).json({
+    success: true,
+    user,
+  });
+};
 
+// get single user data
 
-exports.getAllUser = async(req,res)=>{
-    const user = await userModel.find();
-    res.status(201).json({
-        success:true,
-        user
-    })
-}
+exports.getSingleUser = async (req, res) => {
+  const { id } = req.params;
 
-// get single user data 
+  const singleuser = await userModel.findById({ _id: id });
 
+  res.status(201).json({
+    success: true,
+    singleuser,
+  });
+};
 
-
-exports.getSingleUser = async(req,res)=>{
-    const {id} = req.params
-
-    const singleuser = await userModel.findById({_id:id})
-  
-     res.status(201).json({
-     success:true,
-     singleuser
-     })
-}
-
-
-// user login api 
+// user login api
 
 exports.loginUser = async (req, res) => {
-  let token
+  let token;
   const { email, password } = req.body;
   if (!email || !password) {
     res.send("Please fill all the fields");
@@ -92,51 +77,50 @@ exports.loginUser = async (req, res) => {
   if (userLogin) {
     const isMatch = await bcrypt.compare(password, userLogin.password);
 
-    
-
-
     if (!isMatch) {
-      res.send("Invalid Credential password");
+      res.send("Invalid  password");
     } else {
-      res.send("user successfully logged in");
-      token = await userLogin.generateAuthToken()
+      // res.send("user successfully logged in");
+
+      // token generation
+      token = await userLogin.generateAuthToken();
       console.log(token);
-  
-  
-      
-      // res.cookie("jswtoken", token,{
-      //   expires: new Date(Date.now() + 25892000000),
-      //   httpOnly : true
-      // })
+
+      //  cookie generate
+
+      res.cookie("usercookie", token, {
+        expires: new Date(Date.now() + 9000000),
+        httpOnly: true,
+      });
+      const result = { userLogin, token };
+      res.status(201).json({ status: 201, result });
     }
   } else {
-    res.send("invalid credential email");
+    res.send("invalid  email");
   }
 };
 
-
 //update user
 
-exports.updateUser = async(req,res)=>{
-  const id  = req.params.id;
-  const user = await userModel.findByIdAndUpdate(id, req.body,{
-    new:true
-  })
+exports.updateUser = async (req, res) => {
+  const id = req.params.id;
+  const user = await userModel.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
   if (!user) {
-    res.send("no user to update")
+    res.send("no user to update");
   }
-  res.send(user)
-  user.save()
-}
-
+  res.send(user);
+  user.save();
+};
 
 //delete user
 
-exports.deleteUser = async(req,res)=>{
+exports.deleteUser = async (req, res) => {
   const id = req.params.id;
-  const user = await userModel.findByIdAndDelete(id)
+  const user = await userModel.findByIdAndDelete(id);
   if (!user) {
-    res.send("no user to delete")
+    res.send("no user to delete");
   }
-  res.send(`user deleted successfully  ${user}`)
-}
+  res.send(`user deleted successfully  ${user}`);
+};

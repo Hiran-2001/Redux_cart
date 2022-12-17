@@ -40,7 +40,7 @@ function Login() {
     } else if (password.length < 8) {
       alert("password must be 8 characters");
     }else {
-      const res = await axios.post("/login",{
+      const res = await axios.post("/api/v1/login",{
         email,
         password,
       })
@@ -53,7 +53,7 @@ function Login() {
           password: "",
          
         });
-          
+          console.log(res);
     }
   };
   return (
