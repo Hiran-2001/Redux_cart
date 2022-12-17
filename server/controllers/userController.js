@@ -22,7 +22,11 @@ exports.createUser = async(req,res)=>{
         if (anyUser) {
           res.status(422).send("email is already taken");
           console.log("email already taken");
-        } else {
+        }else if(password !== confirmPassword){
+          res.status(422).send("password doesnt match");
+          console.log("password doesnt match");
+        } 
+        else {
           const addUser = new userModel({
             name,
             email,
@@ -76,38 +80,63 @@ exports.getSingleUser = async(req,res)=>{
 
 // user login api 
 
-exports.loginUser = async(req,res)=>{
-  // console.log(req.body);
-  const {email,password} = req.body;
-
-  if(!email || !password){
-      res.send("please fill all fields")
-      console.log("please fill all fields")
+exports.loginUser = async (req, res) => {
+  let token
+  const { email, password } = req.body;
+  if (!email || !password) {
+    res.send("Please fill all the fields");
   }
 
+  const userLogin = await userModel.findOne({ email: email });
 
-  try {
-     
-    const userValid = await userModel.findOne({email:email})
-    if (userValid) {
+  if (userLogin) {
+    const isMatch = await bcrypt.compare(password, userLogin.password);
+
+    
+
+
+    if (!isMatch) {
+      res.send("Invalid Credential password");
+    } else {
+      res.send("user successfully logged in");
+      token = await userLogin.generateAuthToken()
+      console.log(token);
+  
+  
       
-         const isMatch = await bcrypt.compare(password,userValid.password)
-
-         if (!isMatch) {
-          res.send("Password is incorrect")
-          console.log("Password is incorrect")
-         }else{
-          
-          const token = await userValid.generateAuthToken();
-          console.log(token);
-         }
-    }else{
-      res.send("email not found")  
-      console.log("email not found")  
+      // res.cookie("jswtoken", token,{
+      //   expires: new Date(Date.now() + 25892000000),
+      //   httpOnly : true
+      // })
     }
-
-  } catch (err) {
-    console.log(err);
+  } else {
+    res.send("invalid credential email");
   }
+};
 
+
+//update user
+
+exports.updateUser = async(req,res)=>{
+  const id  = req.params.id;
+  const user = await userModel.findByIdAndUpdate(id, req.body,{
+    new:true
+  })
+  if (!user) {
+    res.send("no user to update")
+  }
+  res.send(user)
+  user.save()
+}
+
+
+//delete user
+
+exports.deleteUser = async(req,res)=>{
+  const id = req.params.id;
+  const user = await userModel.findByIdAndDelete(id)
+  if (!user) {
+    res.send("no user to delete")
+  }
+  res.send(`user deleted successfully  ${user}`)
 }

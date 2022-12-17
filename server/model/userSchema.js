@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const keysecret = process.env.JWT_SECRET_KEY
+// const keysecret = process.env.JWT_SECRET_KEY
 const userSchema = mongoose.Schema({
     name:{
         type:String,
@@ -23,14 +23,13 @@ const userSchema = mongoose.Schema({
     ,phoneNumber:{
         type:Number,
     },
-    tokens:[
-        {
-            token:{
-                type:String,
-                required:true
-            }
+    Tokens:[{
+        token:{
+            type:String,
+            required:true
         }
-    ]
+        
+    }]
 
 })
 
@@ -46,19 +45,17 @@ userSchema.pre("save",async function(next){
 
 // jwt token generation
 
-userSchema.methods.generateAuthToken = async function () {
+userSchema.methods.generateAuthToken =  async function () {
     try {
-        let token23 = jwt.sign({ _id: this._id }, keysecret, {
-            expiresIn: "1d"
-        });
-
-        this.tokens = this.tokens.concat({ token: token23 });
-        await this.save();
-        return token23;
+        let token = jwt.sign({_id: this._id}, process.env.JWT_SECRET_KEY,{
+            expiresIn:"1h"
+        })
+        this.Tokens = this.Tokens.concat({token: token});
+       await this.save()
+       return token
     } catch (error) {
-        // res.status(422).json(error)
-        console.log(error);
+        console.log(err);
     }
-}
+  }
 
 module.exports = mongoose.model("userData", userSchema)
