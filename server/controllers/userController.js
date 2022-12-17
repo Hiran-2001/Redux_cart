@@ -93,7 +93,7 @@ exports.loginUser = async (req, res) => {
         httpOnly: true,
       });
       const result = { userLogin, token };
-      res.status(201).json({ status: 201, result });
+      res.status(201).json({status:201,token});
     }
   } else {
     res.send("invalid  email");

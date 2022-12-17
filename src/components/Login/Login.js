@@ -45,7 +45,8 @@ function Login() {
         password,
       })
       alert("user Login successfully");
-      if (res.status === 201)
+      if (res.status === 201){
+         localStorage.setItem("usertoken",res.data.token)
         setInputValue({
           ...inputValue,
           
@@ -53,6 +54,7 @@ function Login() {
           password: "",
          
         });
+      }
           console.log(res);
     }
   };
