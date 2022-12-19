@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Profile.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -7,16 +7,29 @@ import profilePic from "../../assets/istockphoto-587805156-612x612.jpg";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
-import sampleImg from "../../assets/bg-img.jpg"
+import sampleImg from "../../assets/bg-img.jpg";
+import axios from "axios";
 function Profile() {
+
+
+  const userValidate = async () => {
+    const token = localStorage.getItem("usertoken");
+    
+         const res = await axios.get('/api/v1/validate-user',token)
+  };
+
+  useEffect(() => {
+    
+    userValidate()
+  }, []);
+
   return (
     <>
-      <div id="profile-main" >
+      <div id="profile-main">
         <div className="profile-pic-div">
           <Card
             id="profileCard"
             style={{
-             
               // marginTop: "3rem",
               display: "flex",
               alignItems: "center",
@@ -44,17 +57,24 @@ function Profile() {
               <BsFillPlusCircleFill style={{ width: 30, height: 30 }} />{" "}
             </button>
             <Card.Body>
-              <Card.Title style={{ textAlign: "center",marginTop:"3rem" }}>
+              <Card.Title style={{ textAlign: "center", marginTop: "3rem" }}>
                 Hello Hiran Raj
               </Card.Title>
-              
             </Card.Body>
           </Card>
-          <div  style={{marginTop:"3rem",width:"20rem",height:"3rem"}} id="logout-delete-acc-div">
-            <Button style={{backgroundColor:"red" ,width:"6rem", border: "none",}}>Logout</Button>
-            <Button style={{backgroundColor:"red" , border: "none",}}>Delete Account</Button>
+          <div
+            style={{ marginTop: "3rem", width: "20rem", height: "3rem" }}
+            id="logout-delete-acc-div"
+          >
+            <Button
+              style={{ backgroundColor: "red", width: "6rem", border: "none" }}
+            >
+              Logout
+            </Button>
+            <Button style={{ backgroundColor: "red", border: "none" }}>
+              Delete Account
+            </Button>
           </div>
-
         </div>
 
         {/* user details div */}
@@ -62,17 +82,23 @@ function Profile() {
         <div id="user-details" className="">
           <Card
             border="light"
-            style={{ width: "30em", height: "27rem", marginTop: "3rem", borderRadius:"10px" }}
+            style={{
+              width: "30em",
+              height: "27rem",
+              marginTop: "3rem",
+              borderRadius: "10px",
+            }}
           >
-            <Card.Header style={{ backgroundColor: "white", borderRadius:"20px 20px 0px 0px" }}>
+            <Card.Header
+              style={{
+                backgroundColor: "white",
+                borderRadius: "20px 20px 0px 0px",
+              }}
+            >
               Personal Information
             </Card.Header>
             <Card.Body>
-
-
-                {/* user name card div  */}
-
-
+              {/* user name card div  */}
 
               <div style={{ display: "flex" }} className="user-name">
                 {/* <Card.Text style={{ marginTop: "1.5rem" }}>
@@ -96,9 +122,7 @@ function Profile() {
                 </button>
               </div>
 
-
               {/* user email card div  */}
-
 
               <div style={{ display: "flex" }} className="user-email">
                 {/* <Card.Text style={{ marginTop: "1.5rem" }}>Email</Card.Text> */}
@@ -123,9 +147,6 @@ function Profile() {
 
               {/* user number card div  */}
 
-
-
-
               <div style={{ display: "flex" }} className="user-number">
                 {/* <Card.Text style={{ marginTop: "1.5rem" }}>Phone No</Card.Text> */}
                 <Form.Control
@@ -147,7 +168,7 @@ function Profile() {
                 </button>
               </div>
 
-             {/* address  */}
+              {/* address  */}
 
               <div style={{ display: "flex" }} className="user-number">
                 {/* <Card.Text style={{ marginTop: "1.5rem" }}>Address</Card.Text> */}
@@ -178,44 +199,51 @@ function Profile() {
                   marginLeft: "12rem",
                 }}
               >
-                Change Password 
+                Change Password
                 <FaLock
                   style={{
                     width: "0.8rem",
                     height: "0.8rem",
                     marginTop: "-0.3rem",
-                    marginLeft:".5rem"
+                    marginLeft: ".5rem",
                   }}
                 />
               </button>
             </Card.Body>
           </Card>
 
-                 {/* my order card  */}
-             
+          {/* my order card  */}
+
           <Card
             border="light"
             style={{ width: "30rem", height: "15rem", marginTop: "3rem" }}
           >
             <Card.Header>My Order</Card.Header>
             <Card.Body>
-                <div style={{display:"flex"}} className="orders">
-
-                  <div style={{height:"10rem",width:"10rem" }} className="order-img">
-                         <img style={{height:"10rem",width:"10rem" , borderRadius:"10px" }} src={sampleImg} alt="img" />
-                  </div>
-                  <div style={{marginLeft:"5rem"}} className="order-details">
-                     <Card.Text>Dish : Porotta</Card.Text>
-                     <Card.Text>Price : 10rs</Card.Text>
-                     <Card.Text>Quantity : 2</Card.Text>
-                     <Card.Text>Total Price : 20</Card.Text>
-                  </div>
+              <div style={{ display: "flex" }} className="orders">
+                <div
+                  style={{ height: "10rem", width: "10rem" }}
+                  className="order-img"
+                >
+                  <img
+                    style={{
+                      height: "10rem",
+                      width: "10rem",
+                      borderRadius: "10px",
+                    }}
+                    src={sampleImg}
+                    alt="img"
+                  />
                 </div>
-             
+                <div style={{ marginLeft: "5rem" }} className="order-details">
+                  <Card.Text>Dish : Porotta</Card.Text>
+                  <Card.Text>Price : 10rs</Card.Text>
+                  <Card.Text>Quantity : 2</Card.Text>
+                  <Card.Text>Total Price : 20</Card.Text>
+                </div>
+              </div>
             </Card.Body>
           </Card>
-
-          
         </div>
       </div>
     </>

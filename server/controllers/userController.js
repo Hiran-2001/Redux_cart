@@ -124,3 +124,14 @@ exports.deleteUser = async (req, res) => {
   }
   res.send(`user deleted successfully  ${user}`);
 };
+
+
+
+exports.validateUser = async(req,res)=>{
+
+  try {
+    
+  } catch (error) {
+    
+  }
+}
