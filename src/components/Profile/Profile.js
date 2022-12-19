@@ -11,13 +11,12 @@ import sampleImg from "../../assets/bg-img.jpg"
 function Profile() {
   return (
     <>
-      <div id="profile-main">
-        <div style={{width: "30rem",  height: "38rem",}} className="profile-pic-div">
+      <div id="profile-main" >
+        <div className="profile-pic-div">
           <Card
             id="profileCard"
             style={{
-              width: "20rem",
-              height: "28rem",
+             
               // marginTop: "3rem",
               display: "flex",
               alignItems: "center",
@@ -63,7 +62,7 @@ function Profile() {
         <div id="user-details" className="">
           <Card
             border="light"
-            style={{ width: "35rem", height: "27rem", marginTop: "3rem", borderRadius:"10px" }}
+            style={{ width: "30em", height: "27rem", marginTop: "3rem", borderRadius:"10px" }}
           >
             <Card.Header style={{ backgroundColor: "white", borderRadius:"20px 20px 0px 0px" }}>
               Personal Information
@@ -76,9 +75,9 @@ function Profile() {
 
 
               <div style={{ display: "flex" }} className="user-name">
-                <Card.Text style={{ marginTop: "1.5rem" }}>
+                {/* <Card.Text style={{ marginTop: "1.5rem" }}>
                   Full Name{" "}
-                </Card.Text>
+                </Card.Text> */}
                 <Form.Control
                   className="formControl"
                   // onChange={setValue}
@@ -102,9 +101,9 @@ function Profile() {
 
 
               <div style={{ display: "flex" }} className="user-email">
-                <Card.Text style={{ marginTop: "1.5rem" }}>Email</Card.Text>
+                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Email</Card.Text> */}
                 <Form.Control
-                  style={{ marginLeft: "4rem" }}
+                  // style={{ marginLeft: "4rem" }}
                   className="formControl"
                   // onChange={setValue}
                   // value={inputValue.name}
@@ -128,7 +127,7 @@ function Profile() {
 
 
               <div style={{ display: "flex" }} className="user-number">
-                <Card.Text style={{ marginTop: "1.5rem" }}>Phone No</Card.Text>
+                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Phone No</Card.Text> */}
                 <Form.Control
                   style={{ marginLeft: "2rem" }}
                   className="formControl"
@@ -151,9 +150,9 @@ function Profile() {
              {/* address  */}
 
               <div style={{ display: "flex" }} className="user-number">
-                <Card.Text style={{ marginTop: "1.5rem" }}>Address</Card.Text>
+                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Address</Card.Text> */}
                 <Form.Control
-                  style={{ marginLeft: "3rem" }}
+                  // style={{ marginLeft: "3rem" }}
                   className="formControl"
                   // onChange={setValue}
                   // value={inputValue.name}
@@ -176,7 +175,7 @@ function Profile() {
                   backgroundColor: "whitesmoke",
                   borderRadius: "6px",
                   fontSize: "1rem",
-                  marginLeft: "17rem",
+                  marginLeft: "12rem",
                 }}
               >
                 Change Password 
@@ -196,7 +195,7 @@ function Profile() {
              
           <Card
             border="light"
-            style={{ width: "35rem", height: "15rem", marginTop: "3rem" }}
+            style={{ width: "30rem", height: "15rem", marginTop: "3rem" }}
           >
             <Card.Header>My Order</Card.Header>
             <Card.Body>
