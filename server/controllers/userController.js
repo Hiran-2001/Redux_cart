@@ -129,9 +129,10 @@ exports.deleteUser = async (req, res) => {
 
 exports.validateUser = async(req,res)=>{
 
-  try {
-    
-  } catch (error) {
-    
-  }
+try {
+   const validateUser = await userModel.findOne({_id:req.userId})  
+   res.status(201).json({status:201,validateUser})
+}  catch (error) {
+  res.send("no token provided")
+}
 }

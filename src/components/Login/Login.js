@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./Login.css"
 import {FaEye , FaEyeSlash} from "react-icons/fa"
 import axios from "axios";
 
 function Login() {
-
+  const navigate = useNavigate()
   const [showPass, setShowPass] = useState(false)
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -47,6 +47,7 @@ function Login() {
       alert("user Login successfully");
       if (res.status === 201){
          localStorage.setItem("usertoken",res.data.token)
+         navigate('/')
         setInputValue({
           ...inputValue,
           

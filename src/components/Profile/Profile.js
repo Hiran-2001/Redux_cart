@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Profile.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -9,18 +9,30 @@ import { MdModeEditOutline } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import sampleImg from "../../assets/bg-img.jpg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+// import ContextApi from "../Context/ContextApi";
 function Profile() {
-
+  //  const {loginData , setLoginData} = useContext(ContextApi)
+  const navigate = useNavigate()
+  // console.log(loginData);
 
   const userValidate = async () => {
     const token = localStorage.getItem("usertoken");
-    
-         const res = await axios.get('/api/v1/validate-user',token)
-  };
+    const res = await axios.get("/api/v1/validate_user", {
+      headers: { Authorization: token },
+    });
+     console.log(res.status);
+
+    if (res.status !== 201 || !res) {
+    navigate("*")
+    } else {
+       navigate('/profile')
+      //  setLoginData(res)
+    }
+  }
 
   useEffect(() => {
-    
-    userValidate()
+    userValidate();
   }, []);
 
   return (
