@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import Profile from "./components/Profile/Profile";
 import Error from "./components/Error";
+import Context from "./components/Context/ContextApi";
+
 // import axios from "axios"
 // import { useEffect } from "react";
 function App() {
@@ -22,7 +24,9 @@ function App() {
   // }, []);
 
   return (
+    
     <div className="App">
+  
       <Header />
       <Routes>
         <Route path="/" element={<Cards/>} />
@@ -32,6 +36,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="*" element={<Error/>} />
       </Routes>
+  
     </div>
   );
 }
