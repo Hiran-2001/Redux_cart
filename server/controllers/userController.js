@@ -136,3 +136,16 @@ try {
   res.send("no token provided")
 }
 }
+
+exports.logoutUser = async(req,res)=>{
+  try {
+    req.user.tokens  = req.user.tokens.filter((ctoken)=>{
+      console.log(ctoken !== req.userToken); 
+    });
+  res.clearCookie('usercookie',{ path:"/"});
+  res.user.save()
+    res.status(201).json({status:201})
+  } catch (error) {
+    res.status(201).json({status:201,error})
+  }
+}

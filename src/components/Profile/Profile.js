@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -12,7 +12,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import ContextApi from "../Context/ContextApi";
 function Profile() {
-  //  const {loginData , setLoginData} = useContext(ContextApi)
+  const [user, setUser] = useState([])
   const navigate = useNavigate()
   // console.log(loginData);
 
@@ -21,15 +21,34 @@ function Profile() {
     const res = await axios.get("/api/v1/validate_user", {
       headers: { Authorization: token },
     });
-     console.log(res.status);
 
     if (res.status !== 201 || !res) {
-    navigate("*")
+      navigate("*")
     } else {
-       navigate('/profile')
-      //  setLoginData(res)
+      navigate('/profile')
+      setUser(res.data.validateUser)
+      console.log(user.email)
     }
   }
+
+  const logoutUser = async () => {
+    const token = localStorage.getItem("usertoken");
+    const res = await axios.get("/api/v1/logout_user", {
+      headers: { Authorization: token },
+      credentials: "include"
+    });
+
+    if (res.status === 201 || !res) {
+      navigate("/home")
+      localStorage.removeItem("usertoken");
+      setUser(false)
+    } else {
+      console.log("error");
+      
+
+    }
+  }
+
 
   useEffect(() => {
     userValidate();
@@ -38,6 +57,7 @@ function Profile() {
   return (
     <>
       <div id="profile-main">
+
         <div className="profile-pic-div">
           <Card
             id="profileCard"
@@ -70,7 +90,7 @@ function Profile() {
             </button>
             <Card.Body>
               <Card.Title style={{ textAlign: "center", marginTop: "3rem" }}>
-                Hello Hiran Raj
+                Hello {user.name}
               </Card.Title>
             </Card.Body>
           </Card>
@@ -78,9 +98,7 @@ function Profile() {
             style={{ marginTop: "3rem", width: "20rem", height: "3rem" }}
             id="logout-delete-acc-div"
           >
-            <Button
-              style={{ backgroundColor: "red", width: "6rem", border: "none" }}
-            >
+            <Button onClick={logoutUser}  style={{ backgroundColor: "red", width: "6rem", border: "none" }}>
               Logout
             </Button>
             <Button style={{ backgroundColor: "red", border: "none" }}>
@@ -88,6 +106,10 @@ function Profile() {
             </Button>
           </div>
         </div>
+
+
+
+
 
         {/* user details div */}
 
@@ -112,18 +134,18 @@ function Profile() {
             <Card.Body>
               {/* user name card div  */}
 
-              <div style={{ display: "flex" }} className="user-name">
-                {/* <Card.Text style={{ marginTop: "1.5rem" }}>
-                  Full Name{" "}
-                </Card.Text> */}
-                <Form.Control
-                  className="formControl"
-                  // onChange={setValue}
-                  // value={inputValue.name}
-                  name="name"
-                  type="text"
-                  placeholder="Full Name"
-                />
+              <div style={{ display: "flex", justifyContent: "space-between" }} className="user-name">
+                <Card.Title style={{ marginTop: "1.5rem" }}>
+                  Full Name
+                </Card.Title>
+                <div className="textContainer" style={{ width: "15rem" }}>
+                  <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
+                    {user.name}
+                  </Form.Text>
+                </div>
+
+
+
                 <button
                   style={{
                     border: "none",
@@ -136,17 +158,14 @@ function Profile() {
 
               {/* user email card div  */}
 
-              <div style={{ display: "flex" }} className="user-email">
-                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Email</Card.Text> */}
-                <Form.Control
-                  // style={{ marginLeft: "4rem" }}
-                  className="formControl"
-                  // onChange={setValue}
-                  // value={inputValue.name}
-                  name="email"
-                  type="text"
-                  placeholder="Email"
-                />
+              <div style={{ display: "flex", justifyContent: "space-between" }} className="user-email">
+                <Card.Title style={{ marginTop: "1.5rem" }}>Email</Card.Title>
+                <div className="textContainer" style={{ width: "15rem", marginLeft: 44 }}>
+                  <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
+                    {user.email}
+                  </Form.Text>
+                </div>
+
                 <button
                   style={{
                     border: "none",
@@ -159,17 +178,14 @@ function Profile() {
 
               {/* user number card div  */}
 
-              <div style={{ display: "flex" }} className="user-number">
-                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Phone No</Card.Text> */}
-                <Form.Control
-                  style={{ marginLeft: "2rem" }}
-                  className="formControl"
-                  // onChange={setValue}
-                  // value={inputValue.name}
-                  name="number"
-                  type="text"
-                  placeholder="Phone Number"
-                />
+              <div style={{ display: "flex", justifyContent: "space-between" }} className="user-number">
+                <Card.Title style={{ marginTop: "1.5rem" }}>Phone No</Card.Title>
+                <div className="textContainer" style={{ width: "15rem", marginLeft: 1 }}>
+                  <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
+                    {/* {user.phoneNumber} */} 9495428564
+                  </Form.Text>
+                </div>
+
                 <button
                   style={{
                     border: "none",
@@ -182,17 +198,14 @@ function Profile() {
 
               {/* address  */}
 
-              <div style={{ display: "flex" }} className="user-number">
-                {/* <Card.Text style={{ marginTop: "1.5rem" }}>Address</Card.Text> */}
-                <Form.Control
-                  // style={{ marginLeft: "3rem" }}
-                  className="formControl"
-                  // onChange={setValue}
-                  // value={inputValue.name}
-                  name="number"
-                  type="text"
-                  placeholder="Address"
-                />
+              <div style={{ display: "flex", justifyContent: "space-between" }} className="user-number">
+                <Card.Title style={{ marginTop: "1.5rem" }}>Address</Card.Title>
+                <div className="textContainer" style={{ width: "15rem", marginLeft: 20 }}>
+                  <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
+                    {/* {user.address} */} Chittethu
+                  </Form.Text>
+                </div>
+
                 <button
                   style={{
                     border: "none",
@@ -202,13 +215,17 @@ function Profile() {
                   <MdModeEditOutline style={{ width: 20, height: 20 }} />{" "}
                 </button>
               </div>
+
+              {/* password change button  */}
+
               <button
                 style={{
                   border: "none",
                   backgroundColor: "whitesmoke",
                   borderRadius: "6px",
                   fontSize: "1rem",
-                  marginLeft: "12rem",
+                  marginLeft: "17rem",
+                  marginTop: "3rem"
                 }}
               >
                 Change Password

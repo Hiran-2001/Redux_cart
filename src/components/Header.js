@@ -46,7 +46,7 @@ function Header() {
   }, [total]);
   return (
     <div>
-      <Navbar className=""  style={{ height: "80px" , backgroundColor:"white"  }}>
+      <Navbar className="header"  style={{ height: "80px" , backgroundColor:"white" }}>
         <Container>
           <NavLink to="/" className="text-decoration-none text-dark mx-3">
             Foodie

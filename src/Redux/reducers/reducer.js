@@ -5,7 +5,7 @@ const INIT_STATE = {
 export const cartReducer = (state = INIT_STATE, action) => {
   if (action.type === "ADD_CART") {
 
-    const itemIndex = state.carts.findIndex((item)=>item.id===action.payload.id)
+    const itemIndex = state.carts.findIndex( item =>item.id===action.payload.id)
     if(itemIndex >=0){
       state.carts[itemIndex].qnty +=1
       return {

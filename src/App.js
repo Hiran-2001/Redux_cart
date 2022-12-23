@@ -8,7 +8,6 @@ import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import Profile from "./components/Profile/Profile";
 import Error from "./components/Error";
-import Context from "./components/Context/ContextApi";
 
 // import axios from "axios"
 // import { useEffect } from "react";
