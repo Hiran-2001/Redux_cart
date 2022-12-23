@@ -9,7 +9,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import sampleImg from "../../assets/bg-img.jpg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 // import ContextApi from "../Context/ContextApi";
 function Profile() {
   const [user, setUser] = useState([])
@@ -27,7 +27,7 @@ function Profile() {
     } else {
       navigate('/profile')
       setUser(res.data.validateUser)
-      console.log(user.email)
+      console.log(user._id)
     }
   }
 
@@ -146,14 +146,16 @@ function Profile() {
 
 
 
-                <button
+                <NavLink to={`/profile/update/${user._id}`}>
+                  <button
                   style={{
                     border: "none",
                     background: "none",
                   }}
                 >
-                  <MdModeEditOutline style={{ width: 20, height: 20 }} />{" "}
+                  <MdModeEditOutline style={{ width: 20, height: 20 }} />
                 </button>
+                  </NavLink>
               </div>
 
               {/* user email card div  */}
@@ -166,14 +168,16 @@ function Profile() {
                   </Form.Text>
                 </div>
 
-                <button
+                <NavLink to={`/profile/update/${user._id}`}>
+                  <button
                   style={{
                     border: "none",
                     background: "none",
                   }}
                 >
-                  <MdModeEditOutline style={{ width: 20, height: 20 }} />{" "}
+                  <MdModeEditOutline style={{ width: 20, height: 20 }} />
                 </button>
+                  </NavLink>
               </div>
 
               {/* user number card div  */}
@@ -186,14 +190,16 @@ function Profile() {
                   </Form.Text>
                 </div>
 
-                <button
+                <NavLink to={`/profile/update/${user._id}`}>
+                  <button
                   style={{
                     border: "none",
                     background: "none",
                   }}
                 >
-                  <MdModeEditOutline style={{ width: 20, height: 20 }} />{" "}
+                  <MdModeEditOutline style={{ width: 20, height: 20 }} />
                 </button>
+                  </NavLink>
               </div>
 
               {/* address  */}
@@ -206,14 +212,17 @@ function Profile() {
                   </Form.Text>
                 </div>
 
-                <button
+                  <NavLink to={`/profile/update/${user._id}`}>
+                  <button
                   style={{
                     border: "none",
                     background: "none",
                   }}
                 >
-                  <MdModeEditOutline style={{ width: 20, height: 20 }} />{" "}
+                  <MdModeEditOutline style={{ width: 20, height: 20 }} />
                 </button>
+                  </NavLink>
+               
               </div>
 
               {/* password change button  */}

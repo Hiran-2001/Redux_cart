@@ -7,6 +7,7 @@ import Cards from "./components/Cards";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import Profile from "./components/Profile/Profile";
+import UpdateProfile from "./components/Profile/updateProfile"
 import Error from "./components/Error";
 
 // import axios from "axios"
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signin" element={<Register/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/update/:id" element={<UpdateProfile/>} />
         <Route path="*" element={<Error/>} />
       </Routes>
   

@@ -23,6 +23,9 @@ const userSchema = mongoose.Schema({
     ,phoneNumber:{
         type:Number,
     },
+    address:{
+        type:String,
+    },
     Tokens:[{
         token:{
             type:String,
