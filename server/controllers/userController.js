@@ -1,7 +1,9 @@
 const userModel = require("../model/userSchema");
 const bcrypt = require("bcryptjs");
 
-// register a user
+                                                                     // register a user
+
+
 
 exports.createUser = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
@@ -40,7 +42,8 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// get all user data
+                                                                       // get all user data
+
 
 exports.getAllUser = async (req, res) => {
   const user = await userModel.find();
@@ -63,7 +66,8 @@ exports.getSingleUser = async (req, res) => {
   });
 };
 
-// user login api
+                                                               // user login api
+
 
 exports.loginUser = async (req, res) => {
   let token;
@@ -84,7 +88,7 @@ exports.loginUser = async (req, res) => {
 
       // token generation
       token = await userLogin.generateAuthToken();
-      console.log(token);
+      // console.log(token);
 
       //  cookie generate
 
@@ -100,21 +104,22 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-//update user
+                                                                    //update user
 
 exports.updateUser = async (req, res) => {
   const id = req.params.id;
+ 
   const user = await userModel.findByIdAndUpdate(id, req.body, {
     new: true,
   });
   if (!user) {
     res.send("no user to update");
   }
-  res.send(user);
+  res.status(201).json({status:201,user});
   user.save();
 };
 
-//delete user
+                                                                       //delete user
 
 exports.deleteUser = async (req, res) => {
   const id = req.params.id;
@@ -126,6 +131,7 @@ exports.deleteUser = async (req, res) => {
 };
 
 
+                                                                    //validating user
 
 exports.validateUser = async(req,res)=>{
 
@@ -136,6 +142,9 @@ try {
   res.send("no token provided")
 }
 }
+
+
+                                                                         //logout user
 
 exports.logoutUser = async(req,res)=>{
   try {

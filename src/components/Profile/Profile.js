@@ -50,6 +50,22 @@ function Profile() {
   }
 
 
+  const deleteAccount = async ()=>{
+    const id = user._id
+    try {
+      const res = await axios.delete(`/api/v1/delete/user/${id}`)
+      if(res.status===201){
+        
+        console.log("user has been deleted");
+        navigate('/home')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(user._id);
+  }
+
+
   useEffect(() => {
     userValidate();
   }, []);
@@ -101,7 +117,7 @@ function Profile() {
             <Button onClick={logoutUser}  style={{ backgroundColor: "red", width: "6rem", border: "none" }}>
               Logout
             </Button>
-            <Button style={{ backgroundColor: "red", border: "none" }}>
+            <Button onClick={deleteAccount} style={{ backgroundColor: "red", border: "none" }}>
               Delete Account
             </Button>
           </div>
@@ -186,7 +202,7 @@ function Profile() {
                 <Card.Title style={{ marginTop: "1.5rem" }}>Phone No</Card.Title>
                 <div className="textContainer" style={{ width: "15rem", marginLeft: 1 }}>
                   <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
-                    {/* {user.phoneNumber} */} 9495428564
+                    {user.phoneNumber} 
                   </Form.Text>
                 </div>
 
@@ -208,7 +224,7 @@ function Profile() {
                 <Card.Title style={{ marginTop: "1.5rem" }}>Address</Card.Title>
                 <div className="textContainer" style={{ width: "15rem", marginLeft: 20 }}>
                   <Form.Text style={{ marginTop: "1.5rem", display: "flex", justifyContent: "start" }}>
-                    {/* {user.address} */} Chittethu
+                    {user.address} 
                   </Form.Text>
                 </div>
 

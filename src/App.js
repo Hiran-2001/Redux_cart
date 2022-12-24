@@ -7,7 +7,7 @@ import Cards from "./components/Cards";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import Profile from "./components/Profile/Profile";
-import UpdateProfile from "./components/Profile/updateProfile"
+import UpdateProfile from "./components/Profile/UpdateProfile"
 import Error from "./components/Error";
 
 // import axios from "axios"

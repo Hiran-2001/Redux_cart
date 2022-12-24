@@ -31,7 +31,7 @@
 }
 
 #name-phn{
-    background-color: transparent;
+    /* background-color: transparent; */
     /* border: none; */
     
 }
@@ -48,7 +48,7 @@
   }
 
 #email-add{
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 #email-add:focus{
     background-color: #ffffff;
