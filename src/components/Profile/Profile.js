@@ -14,8 +14,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Profile() {
   const [user, setUser] = useState([])
   const navigate = useNavigate()
-  // console.log(loginData);
-
+  const [proImg , setProImg] = useState("")
+  const setFileImg=(e)=>{
+   setProImg(e.target.files[0]);
+  }
+  console.log(proImg);
+ 
   const userValidate = async () => {
     const token = localStorage.getItem("usertoken");
     const res = await axios.get("/api/v1/validate_user", {
@@ -27,7 +31,7 @@ function Profile() {
     } else {
       navigate('/profile')
       setUser(res.data.validateUser)
-      console.log(user._id)
+      // console.log(user._id)
     }
   }
 
@@ -94,18 +98,15 @@ function Profile() {
               variant="top"
               src={profilePic}
             />
-            <button
-              style={{
-                border: "none",
-                background: "none",
-                marginLeft: 150,
-                marginTop: -40,
-              }}
-            >
-              <BsFillPlusCircleFill style={{ width: 30, height: 30 }} />{" "}
+            <button id="file-upload-btn" style={{ border: "none",marginLeft: 150,marginTop: -40, }} >
+            <input name="photo" onChange={setFileImg} type="file" id="uploadBtn"/>
+            <label htmlFor="uploadBtn"> 
+            <BsFillPlusCircleFill  id="upload-btn"/>
+            
+             </label>
             </button>
             <Card.Body>
-              <Card.Title style={{ textAlign: "center", marginTop: "3rem" }}>
+              <Card.Title style={{ textAlign: "center", marginTop: "1rem" }}>
                 Hello {user.name}
               </Card.Title>
             </Card.Body>
