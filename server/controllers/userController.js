@@ -158,3 +158,44 @@ exports.logoutUser = async(req,res)=>{
     res.status(201).json({status:201,error})
   }
 }
+
+
+
+                                                                        //image upload
+
+
+exports.uploadImage = async(req,res)=>{
+  const id = req.params.id;
+
+//   const user = await userModel.findByIdAndUpdate(id, req.body, {
+//     new: true,
+//   });
+//   if (!user) {
+//     res.send("no user to update");
+//   }
+//   res.status(201).json({status:201,user});
+//   user.save();
+// };
+
+  //  const uploadImg = {file:req.body.image}
+  
+  //   if(!uploadImg){
+  //     res.status(401).json({status:401,message:"fill the field"})
+  //   }
+    
+    try {
+      const userData = await userModel.findByIdAndUpdate(id, req.file,{
+        new:true,
+      })
+      if (!userData) {
+            res.send("no user to update");
+          }
+
+      const saveData = await userData.save()
+
+      res.status(201).json({status:201,saveData})
+    } catch (error) {
+      res.status(401).json({status:401,error})
+    }
+
+}

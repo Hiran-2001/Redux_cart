@@ -15,10 +15,12 @@ function Profile() {
   const [user, setUser] = useState([])
   const navigate = useNavigate()
   const [proImg , setProImg] = useState("")
+
+
   const setFileImg=(e)=>{
-   setProImg(e.target.files[0]);
+   setProImg({[e.target.name]:e.target.files[0]});
   }
-  console.log(proImg);
+  console.log(proImg.photo);
  
   const userValidate = async () => {
     const token = localStorage.getItem("usertoken");
@@ -70,6 +72,23 @@ function Profile() {
   }
 
 
+    //add user image\
+    
+
+    const config = {
+      headers:{
+        "Content-Type": "multipart/form-data"
+      }
+    }
+
+    const addImage = async(e)=>{
+      e.preventDefault();
+      const id = user._id
+         const formData = new FormData()
+         formData.append('photo',proImg)
+         console.log(formData);
+    }
+
   useEffect(() => {
     userValidate();
   }, []);
@@ -109,7 +128,9 @@ function Profile() {
               <Card.Title style={{ textAlign: "center", marginTop: "1rem" }}>
                 Hello {user.name}
               </Card.Title>
+                   <Button onClick={addImage} style={{backgroundColor:"red", border:"none "}} id="change-image">Change Image</Button>
             </Card.Body>
+        
           </Card>
           <div
             style={{ marginTop: "3rem", width: "20rem", height: "3rem" }}
