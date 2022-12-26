@@ -46,7 +46,7 @@ exports.createUser = async (req, res) => {
 
 
 exports.getAllUser = async (req, res) => {
-  const user = await userModel.find();
+  const user = await userModel.find(req.query);
   res.status(201).json({
     success: true,
     user,
@@ -166,16 +166,17 @@ exports.logoutUser = async(req,res)=>{
 
 exports.uploadImage = async(req,res)=>{
   const id = req.params.id;
-
-//   const user = await userModel.findByIdAndUpdate(id, req.body, {
-//     new: true,
-//   });
-//   if (!user) {
-//     res.send("no user to update");
-//   }
-//   res.status(201).json({status:201,user});
-//   user.save();
-// };
+  const filename = req.file
+  const user = await userModel.findByIdAndUpdate(id, {userImage:filename}, {
+    new: true,
+  });
+  if (!user) {
+    res.send("no user to update");
+  }
+  res.status(201).json({status:201,user});
+  user.save();
+  console.log(req.file);
+};
 
   //  const uploadImg = {file:req.body.image}
   
@@ -183,19 +184,21 @@ exports.uploadImage = async(req,res)=>{
   //     res.status(401).json({status:401,message:"fill the field"})
   //   }
     
-    try {
-      const userData = await userModel.findByIdAndUpdate(id, req.file,{
-        new:true,
-      })
-      if (!userData) {
-            res.send("no user to update");
-          }
+    // try {
 
-      const saveData = await userData.save()
+    //   const {userImage} = req.file
+    //   const userData = await userModel.findByIdAndUpdate(id, userImage,{
+    //     new:true,
+    //   })
+    //   if (!userData) {
+    //         res.send("no user to update");
+    //       }
 
-      res.status(201).json({status:201,saveData})
-    } catch (error) {
-      res.status(401).json({status:401,error})
-    }
+    //   const saveData = await userData.save()
 
-}
+    //   res.status(201).json({status:201,saveData})
+    // } catch (error) {
+    //   res.status(401).json({status:401,error})
+    // }
+
+// }

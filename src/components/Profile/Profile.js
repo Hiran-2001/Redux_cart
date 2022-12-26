@@ -20,7 +20,7 @@ function Profile() {
   const setFileImg=(e)=>{
    setProImg({[e.target.name]:e.target.files[0]});
   }
-  console.log(proImg.photo);
+  // console.log(proImg.photo);
  
   const userValidate = async () => {
     const token = localStorage.getItem("usertoken");
@@ -82,11 +82,19 @@ function Profile() {
     }
 
     const addImage = async(e)=>{
-      e.preventDefault();
       const id = user._id
-         const formData = new FormData()
-         formData.append('photo',proImg)
-         console.log(formData);
+      e.preventDefault();
+        const formData = new FormData();
+        formData.append('photo', proImg);
+         console.log(id);
+     
+      axios.patch(`/api/v1/image_upload/${id}`,formData,config).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+      })
+      
+
     }
 
   useEffect(() => {
@@ -115,10 +123,10 @@ function Profile() {
                 marginLeft: 15,
               }}
               variant="top"
-              src={profilePic}
+              src={user.userImage}
             />
             <button id="file-upload-btn" style={{ border: "none",marginLeft: 150,marginTop: -40, }} >
-            <input name="photo" onChange={setFileImg} type="file" id="uploadBtn"/>
+            <input name="photo" accept=".png, .jpg, .jpeg" onChange={setFileImg} type="file" id="uploadBtn"/>
             <label htmlFor="uploadBtn"> 
             <BsFillPlusCircleFill  id="upload-btn"/>
             
