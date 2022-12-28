@@ -15,6 +15,8 @@ function Login() {
   });
 
   console.log(inputValue);
+
+  
   const setValue = (e) => {
     //  console.log(e.target.value);
     const { name, value } = e.target;

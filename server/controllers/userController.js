@@ -166,16 +166,39 @@ exports.logoutUser = async(req,res)=>{
 
 exports.uploadImage = async(req,res)=>{
   const id = req.params.id;
-  const filename = req.file
-  const user = await userModel.findByIdAndUpdate(id, {userImage:filename}, {
-    new: true,
-  });
-  if (!user) {
-    res.send("no user to update");
+
+  const {filename} = req.file;
+
+
+  if(!filename){
+      res.status(401).json({status:401,message:"fill all the data"})
   }
-  res.status(201).json({status:201,user});
-  user.save();
-  console.log(req.file);
+
+  try {
+      
+        
+    const user = await userModel.findByIdAndUpdate(id, {userImage:filename}, {
+      new: true,
+    });
+    if (!user) {
+      res.send("no user to update");
+    }
+
+      const finaldata = await user.save();
+
+      res.status(201).json({status:201,finaldata});
+
+  } catch (error) {
+      res.status(401).json({status:401,error})
+  }
+
+
+  
+  
+  
+  // res.status(201).json({status:201,user});
+  // user.save();
+  // console.log(req.file);
 };
 
   //  const uploadImg = {file:req.body.image}

@@ -1,29 +1,28 @@
-const multer = require('multer');
-let path = require('path');
+const multer = require("multer");
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'images');
+const imgconfig = multer.diskStorage({
+    destination:(req,file,callback)=>{
+        callback(null,"./uploads")
     },
-    filename: function(req, file, cb) {   
-        cb(null, path.extname(file.originalname));
+    filename:(req,file,callback)=>{
+        callback(null,`imgae-${Date.now()}. ${file.originalname}`)
     }
-});
-
-const fileFilter = (req, file, cb) => {
-    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    if(allowedFileTypes.includes(file.mimetype)) {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
-
-
-const upload = multer({
-   storage:storage,
-   fileFilter:fileFilter
 })
 
 
-module.exports = upload
+// img filter
+const isImage = (req,file,callback)=>{
+    if(file.mimetype.startsWith("image")){
+        callback(null,true)
+    }else{
+        callback(new Error("only images is allowd"))
+    }
+}
+
+const upload = multer({
+    storage:imgconfig,
+    fileFilter:isImage
+});
+
+
+module.exports = upload;
