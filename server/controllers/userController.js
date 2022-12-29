@@ -196,32 +196,33 @@ exports.uploadImage = async(req,res)=>{
   
   
   
-  // res.status(201).json({status:201,user});
-  // user.save();
-  // console.log(req.file);
-};
+//   res.status(201).json({status:201,user});
+//   user.save();
+//   console.log(req.file);
+// };
 
-  //  const uploadImg = {file:req.body.image}
+//    const uploadImg = {file:req.body.image}
   
-  //   if(!uploadImg){
-  //     res.status(401).json({status:401,message:"fill the field"})
-  //   }
+//     if(!uploadImg){
+//       res.status(401).json({status:401,message:"fill the field"})
+//     }
     
-    // try {
+//     try {
 
-    //   const {userImage} = req.file
-    //   const userData = await userModel.findByIdAndUpdate(id, userImage,{
-    //     new:true,
-    //   })
-    //   if (!userData) {
-    //         res.send("no user to update");
-    //       }
+//       const {userImage} = req.file
+//       const userData = await userModel.findByIdAndUpdate(id, userImage,{
+//         new:true,
+//       })
+//       if (!userData) {
+//             res.send("no user to update");
+//           }
 
-    //   const saveData = await userData.save()
+//       const saveData = await userData.save()
 
-    //   res.status(201).json({status:201,saveData})
-    // } catch (error) {
-    //   res.status(401).json({status:401,error})
-    // }
+//       res.status(201).json({status:201,saveData})
+//     } catch (error) {
+//       res.status(401).json({status:401,error})
+//     }
 
 // }
+
